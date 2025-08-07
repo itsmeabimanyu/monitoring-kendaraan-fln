@@ -8,6 +8,7 @@ This project is an **enhancement** of the original repository [here](https://git
 ### 2. Configure Environment
 
 ```bash
+php composer.phar install
 cp .env.example .env
 php artisan key:generate
 ```
@@ -15,7 +16,7 @@ php artisan key:generate
 ### 3. Install Laravel Reverb
 
 ```bash
-composer require laravel/reverb
+php composer.phar require laravel/reverb
 php artisan reverb:install
 ```
 
@@ -30,6 +31,5 @@ Use the following commands to start the application in development mode:
 
 ```bash
 php artisan serve
-php artisan queue:work
 php artisan reverb:start
 ```
