@@ -31,7 +31,7 @@ return [
     |
     */
 
-    'lifetime' => 1440, // dalam menit, misalnya 120 = 2 jam
+    'lifetime' => 360, // dalam menit, misalnya 120 = 2 jam
     'expire_on_close' => false, // agar tidak logout saat browser ditutup
 
 

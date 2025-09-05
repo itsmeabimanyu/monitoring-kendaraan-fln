@@ -5,56 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History Kendaraan</title>
 
-    {{-- datatables cdn --}}
-    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-
     {{-- datatables non cdn / offline --}}
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.bundle.min.css') }}" rel="stylesheet">
+
     <script src="{{ asset('assets/jquery/jquery-3.6.0.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('assets/datatables/css/jquery.dataTables.min.css') }}">
 </head>
 
-<body>
-    <div class="container mt-5">
-        <div class="text-center" style="margin-top: -20px;">
-            <img src="img/fln-logo.png" width="120px" alt="">
-        </div>
+<body class="d-flex" style="min-height: 100vh;">
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="mb-0">History Kendaraan</h2>
-            <span style="white-space: nowrap;">
-                {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
-            </span>
-        </div>
+    <!-- Sidebar -->
+    @include('components.sidebar')
 
-        <div id="loading" style="text-align: center; margin: 30px 0; display: none;">
-            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
-        </div>
+    <div class="flex-grow-1 p-4 bg-light">
+        <div class="container mt-3">
+            <div class="text-center" style="margin-top: -20px;">
+                <img src="/img/fln-logo.png" width="120px" alt="">
+            </div>
 
-        <div class="table-responsive">
-            <table id="history-table" class="display" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Id History</th>
-                        <th>Tanggal Update</th>
-                        <th>Jam</th>
-                        <th>Mobil</th>
-                        <th>Status</th>
-                        <th>Pemakai</th>
-                        <th>Driver</th>
-                        <th>Tujuan</th>
-                        <th>Keterangan</th>
-                        <th>PIC Update</th>
-                    </tr>
-                </thead>
-            </table>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="mb-0">History Kendaraan</h2>
+
+                <div class="d-flex flex-column align-items-end">
+                    <span style="white-space: nowrap;">
+                        {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
+                    </span>
+
+                    <div class="d-flex mt-2">
+                        {{-- <a href="/admin" class="btn btn-outline-secondary btn-sm">
+                            <i class="fa fa-arrow-left"></i> Kembali
+                        </a> --}}
+                    </div>
+                </div>
+            </div>
+
+            <div id="loading" style="text-align: center; margin: 30px 0; display: none;">
+                <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+            </div>
+
+            <div class="table-responsive">
+                <table id="history-table" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Id History</th>
+                            <th>Tanggal Update</th>
+                            <th>Jam</th>
+                            <th>Mobil</th>
+                            <th>Status</th>
+                            <th>Pemakai</th>
+                            <th>Driver</th>
+                            <th>Tujuan</th>
+                            <th>Keterangan</th>
+                            <th>Total KM</th>
+                            <th>Catatan Perbaikan</th>
+                            <th>PIC Update</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
-
-    <!-- DataTables CDN JS -->
-    {{-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> --}}
 
     <!-- DataTables non cdn offline JS -->
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
@@ -92,6 +104,12 @@
                     }
                     , {
                         title: "Keterangan"
+                    }
+                    , {
+                        title: "Total KM"
+                    }
+                    , {
+                        title: "Catatan Perbaikan"
                     }
                     , {
                         title: "PIC Update"
@@ -156,6 +174,8 @@
                                 , item.driver
                                 , item.tujuan
                                 , item.keterangan
+                                , item.total_km
+                                , item.catatan_perbaikan
                                 , item.pic_update
                             ]);
                         });

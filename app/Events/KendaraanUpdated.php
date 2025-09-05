@@ -33,7 +33,7 @@ class KendaraanUpdated implements ShouldBroadcast
         return [
             'id' => $this->kendaraan->id,
             'status' => $this->kendaraan->status,
-            'updated_at' => $this->kendaraan->updated_at->format('Y-m-d H:i:s'),
+             'updated_at' => $this->kendaraan->updated_at->toIso8601String(),
         ];
     }
 

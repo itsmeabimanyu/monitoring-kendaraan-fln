@@ -36,6 +36,14 @@ class HistoryKendaraan extends Model
         'driver',
         'tujuan',
         'keterangan',
+        'km_awal',
+        'km_akhir', 
+        'catatan_perbaikan', 
         'pic_update'
     ];
+
+    public function kendaraan()
+    {
+        return $this->belongsTo(Kendaraan::class);
+    }
 }

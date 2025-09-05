@@ -48,5 +48,10 @@
     </div>
 
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script>
+        window.addEventListener('beforeunload', function() {
+            document.querySelector("form").reset();
+        });
+    </script>
 </body>
 </html>

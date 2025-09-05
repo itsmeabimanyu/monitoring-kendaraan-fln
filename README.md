@@ -26,6 +26,12 @@ php artisan reverb:install
 php artisan migrate:fresh --seed
 ```
 
+> [!NOTE]
+> Allows Laravel to write to the storage folder by setting proper ownership and permissions.
+```bash
+sudo chown -R www-data:www-data /var/www/monitoring-kendaraan/storage
+sudo chmod -R 775 /var/www/monitoring-kendaraan/storage
+```
 ### 5. Running the Application
 Use the following commands to start the application in development mode:
 
